@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github.xxeddiexxx"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
     jvmToolchain(21)
@@ -31,9 +31,7 @@ intellijPlatform {
         }
         changeNotes = """
             <ul>
-                <li>Initial release</li>
-                <li>Cycle between .razor, .razor.cs, .razor.css, and .razor.js files</li>
-                <li>Default shortcut: Alt+S</li>
+                <li>Remember cursor position when switching between files</li>
             </ul>
         """.trimIndent()
     }

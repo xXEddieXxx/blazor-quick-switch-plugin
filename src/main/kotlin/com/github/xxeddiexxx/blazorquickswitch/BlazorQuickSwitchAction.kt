@@ -11,11 +11,13 @@ class BlazorQuickSwitchAction : AnAction() {
 
     private val extensions = listOf("razor", "razor.cs", "razor.css", "razor.js")
     private val extensionsByLength = extensions.sortedByDescending { it.length }
+    private val cursorPositions = mutableMapOf<String, Int>()
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
         val currentFile = event.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
         val currentFilePath = currentFile.path
+        val editor = event.getData(CommonDataKeys.EDITOR)
 
         val (basePath, currentExtension) = extractBaseAndExtension(currentFilePath) ?: return
         val newPath = cycleExtension(basePath, currentExtension) ?: return
@@ -23,8 +25,19 @@ class BlazorQuickSwitchAction : AnAction() {
 
         val newFile = LocalFileSystem.getInstance().findFileByPath(newPath) ?: return
 
+        if (editor != null) {
+            cursorPositions[currentFilePath] = editor.caretModel.offset
+        }
+
         FileEditorManager.getInstance(project).closeFile(currentFile)
-        OpenFileDescriptor(project, newFile).navigate(true)
+
+        val savedOffset = cursorPositions[newPath]
+        val descriptor = if (savedOffset != null) {
+            OpenFileDescriptor(project, newFile, savedOffset)
+        } else {
+            OpenFileDescriptor(project, newFile)
+        }
+        descriptor.navigate(true)
     }
 
     override fun update(event: AnActionEvent) {
