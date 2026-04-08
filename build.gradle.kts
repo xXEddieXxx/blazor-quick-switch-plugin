@@ -4,8 +4,8 @@ plugins {
     alias(libs.plugins.intellijPlatform)
 }
 
-group = "org.example"
-version = "1.0.0-SNAPSHOT"
+group = "com.github.xxeddiexxx"
+version = "1.0.0"
 
 // Set the JVM language level used to build the project.
 kotlin {
@@ -22,7 +22,7 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
     intellijPlatform {
-        intellijIdea(providers.gradleProperty("platformVersion"))
+        rider(providers.gradleProperty("platformVersion"))
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
 
         // Add plugin dependencies for compilation here, for example:
@@ -46,5 +46,11 @@ intellijPlatform {
 tasks {
     wrapper {
         gradleVersion = providers.gradleProperty("gradleVersion").get()
+    }
+    buildSearchableOptions {
+        enabled = false
+    }
+    prepareJarSearchableOptions {
+        enabled = false
     }
 }

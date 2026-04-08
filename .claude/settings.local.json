@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(./gradlew build:*)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files/JetBrains/**)",
+      "Bash(where java:*)",
+      "Read(//c/Users/Windows 11/.jdks/**)",
+      "Read(//c/Users/Windows 11/.gradle/**)",
+      "Bash(export JAVA_HOME=\"/c/Users/Windows 11/.jdks/openjdk-26\")",
+      "Bash(./gradlew buildPlugin)",
+      "Bash(./gradlew clean:*)"
+    ]
+  }
+}

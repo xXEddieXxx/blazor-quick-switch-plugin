@@ -1,33 +1,48 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>org.example.blazor-quick-switch-plugin</id>
+<idea-plugin url="https://github.com/xXEddieXxx/blazor-quick-switch-plugin">
+    <id>com.github.xxeddiexxx.blazor-quick-switch</id>
+    <name>Blazor Quick Switch</name>
+    <vendor url="https://github.com/xXEddieXxx">Eddie Endisch</vendor>
 
-    <!-- Public plugin name should be written in Title Case.
-     Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
-    <name>Blazor-quick-switch-plugin</name>
-
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
-
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
-        ]]></description>
+        <h2>Blazor Quick Switch</h2>
+        <p>
+            Quickly switch between related Blazor component files using a single keyboard shortcut.
+            Inspired by the popular <a href="https://plugins.jetbrains.com/plugin/10996-angular-cli-quickswitch">Angular CLI QuickSwitch</a> plugin.
+        </p>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+        <h3>Supported file types</h3>
+        <ul>
+            <li><b>.razor</b> — Razor component markup</li>
+            <li><b>.razor.cs</b> — Code-behind</li>
+            <li><b>.razor.css</b> — Scoped CSS</li>
+            <li><b>.razor.js</b> — JavaScript interop</li>
+        </ul>
 
-    <resource-bundle>messages.MyMessageBundle</resource-bundle>
+        <h3>Usage</h3>
+        <p>
+            Open any Blazor component file and press <b>Alt+S</b> to cycle to the next related file.
+            The plugin automatically detects sibling files that share the same component name and
+            switches between them in order. Only files that exist on disk are included in the cycle.
+        </p>
 
-    <!-- Extensions defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="MyToolWindow" factoryClass="org.example.MyToolWindowFactory"
-                    icon="AllIcons.Toolwindows.ToolWindowPalette"/>
-    </extensions>
+        <h3>Features</h3>
+        <ul>
+            <li>One shortcut to cycle through all related Blazor component files</li>
+            <li>Skips file types that don't exist for the current component</li>
+            <li>Replaces the current editor tab (no tab clutter)</li>
+            <li>Customizable keyboard shortcut via Settings &gt; Keymap &gt; "Blazor Quick Switch"</li>
+            <li>Rider only</li>
+        </ul>
+    ]]></description>
 
+    <depends>com.intellij.modules.rider</depends>
+
+    <actions>
+        <action id="blazorQuickSwitch.QuickSwitch"
+                class="com.github.xxeddiexxx.blazorquickswitch.BlazorQuickSwitchAction"
+                text="Blazor Quick Switch"
+                description="Quickly switch between related Blazor component files (.razor, .razor.cs, .razor.css, .razor.js)">
+            <keyboard-shortcut first-keystroke="alt S" keymap="$default"/>
+        </action>
+    </actions>
 </idea-plugin>
