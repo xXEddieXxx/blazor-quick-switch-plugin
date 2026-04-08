@@ -7,7 +7,6 @@ plugins {
 group = "com.github.xxeddiexxx"
 version = "1.0.0"
 
-// Set the JVM language level used to build the project.
 kotlin {
     jvmToolchain(21)
 }
@@ -19,15 +18,9 @@ repositories {
     }
 }
 
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
     intellijPlatform {
         rider(providers.gradleProperty("platformVersion"))
-        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
-
-        // Add plugin dependencies for compilation here, for example:
-        // bundledPlugin("com.intellij.java")
-
     }
 }
 
@@ -36,9 +29,12 @@ intellijPlatform {
         ideaVersion {
             sinceBuild = providers.gradleProperty("pluginSinceBuild")
         }
-
         changeNotes = """
-            Initial version
+            <ul>
+                <li>Initial release</li>
+                <li>Cycle between .razor, .razor.cs, .razor.css, and .razor.js files</li>
+                <li>Default shortcut: Alt+S</li>
+            </ul>
         """.trimIndent()
     }
 }

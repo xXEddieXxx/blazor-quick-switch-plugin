@@ -6,12 +6,12 @@ Inspired by the [Angular CLI QuickSwitch](https://plugins.jetbrains.com/plugin/1
 
 ## Supported file types
 
-| Extension      | Description              |
-|----------------|--------------------------|
-| `.razor`       | Razor component markup   |
-| `.razor.cs`    | Code-behind              |
-| `.razor.css`   | Scoped CSS               |
-| `.razor.js`    | JavaScript interop       |
+| Extension    | Description            |
+|--------------|------------------------|
+| `.razor`     | Razor component markup |
+| `.razor.cs`  | Code-behind            |
+| `.razor.css` | Scoped CSS             |
+| `.razor.js`  | JavaScript interop     |
 
 ## Usage
 
@@ -21,7 +21,12 @@ Inspired by the [Angular CLI QuickSwitch](https://plugins.jetbrains.com/plugin/1
 
 The plugin skips file types that don't exist for the current component. For example, if you only have `Counter.razor` and `Counter.razor.cs`, it will toggle between those two.
 
-The shortcut can be customized via **Settings > Keymap** and searching for "Blazor Quick Switch".
+## Changing the keyboard shortcut
+
+1. Open **Settings** (Ctrl+Alt+S)
+2. Go to **Keymap**
+3. Search for **"Blazor Quick Switch"**
+4. Right-click the action and choose **Add Keyboard Shortcut** or **Remove** to change the binding
 
 ## Installation
 
@@ -35,3 +40,7 @@ The shortcut can be customized via **Settings > Keymap** and searching for "Blaz
 ```
 
 The plugin zip will be in `build/distributions/`.
+
+## License
+
+[Apache License 2.0](LICENSE)
